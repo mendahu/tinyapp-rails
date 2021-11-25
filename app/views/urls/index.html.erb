@@ -1,0 +1,20 @@
+  <main style="margin: 1em;">
+    <h3>My URLs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Short URL</th>
+          <th scope="col">Long URL</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @urls.each do |url| %>
+          <tr>
+            <td><%= url.short_url %></td>
+            <td><%= url.long_url %></td>
+          </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </main>
+  
