@@ -14,14 +14,30 @@ class UrlsController < ApplicationController
   end
 
   def create
-    @url = Url.new
-    @url.short_url = SecureRandom.hex(3)
-    @url.long_url = params[:url][:long_url]
+    short_url = SecureRandom.hex(3)
+    user_id = 1
+    @url = Url.new(url_params.merge(short_url: short_url, user_id: user_id))
 
     if @url.save
       redirect_to @url
     else
       render :new
     end
+  end
+
+  def redirect
+    @url = Url.find_by(short_url: params[:short_url])
+    url = @url.long_url.prepend("https://")
+    redirect_to url
+  end
+
+  def destroy
+    @url = Url.find_by(short_url: params[:id])
+    @url.destroy
+    redirect_to action: "index"
+  end
+
+  private def url_params
+    params.require(:url).permit(:long_url)
   end
 end
