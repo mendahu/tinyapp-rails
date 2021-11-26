@@ -13,7 +13,6 @@ class UrlsController < ApplicationController
     @url = Url.new
   end
 
-
   def create
     @url = Url.new
     @url.short_url = SecureRandom.hex(3)
