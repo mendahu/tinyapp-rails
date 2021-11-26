@@ -31,6 +31,16 @@ class UrlsController < ApplicationController
     redirect_to url
   end
 
+  def update
+    @url = Url.find_by(short_url: params[:id])
+
+    if @url.update(url_params)
+      redirect_to @url
+    else
+      render :new
+    end
+  end
+
   def destroy
     @url = Url.find_by(short_url: params[:id])
     @url.destroy

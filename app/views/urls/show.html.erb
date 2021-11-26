@@ -4,5 +4,21 @@
         <h5 class="card-title">TinyURL for: <%= @url.long_url %></h5>
         <p class="card-text">Short URL: <a href="/u/<%= @url.short_url %>"><%= @url.short_url %></a></p>
       </div>
-    <div class="card-footer text-muted"></div>
+    <div class="card-footer text-muted">
+      <h4>Edit</h4>
+      <%= form_with :class => 'form-inline', model: @url do |form| %>
+
+        <div class="form-group mb-2">
+          <%= form.label :long_url, "New URL:" %>
+          <%= form.text_field :long_url, :class => 'form-control', placeholder: "https://", style: "width: 300px; margin: 1em"%>
+          
+          <%= form.submit "Submit", :class => 'btn btn-primary' %>
+        </div>
+
+
+      <% end %>
+      <% @url.errors.full_messages_for(:long_url).each do |message| %>
+        <div class="alert alert-danger" role="alert"><%= message %></div>
+      <% end %>
+    </div>
   </div>
