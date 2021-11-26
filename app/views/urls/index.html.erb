@@ -10,7 +10,7 @@
       <tbody>
       <% @urls.each do |url| %>
           <tr>
-            <td><a href="/urls/<%= url.short_url %>"><%= url.short_url %></a></td>
+            <td><%= link_to url.short_url, url %></td>
             <td><%= url.long_url %></td>
           </tr>
           <% end %>

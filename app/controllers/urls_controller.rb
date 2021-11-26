@@ -4,7 +4,9 @@ class UrlsController < ApplicationController
   end
 
   def show
-    short_url = params[:short_url]
-    @url = Url.find_by(short_url: short_url)
+    @url = Url.find_by(short_url: params[:id])
+  end
+
+  def new
   end
 end
